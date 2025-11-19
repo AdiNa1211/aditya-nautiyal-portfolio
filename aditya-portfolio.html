@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Nautiyal - Flutter Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0A1929;
+            --accent-blue: #1E88E5;
+            --light-blue: #42A5F5;
+            --bg-dark: #0D1B2A;
+            --text-light: #E3F2FD;
+            --text-gray: #90CAF9;
+            --card-bg: rgba(30, 136, 229, 0.05);
+            --border-color: rgba(66, 165, 245, 0.2);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--primary-blue) 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-blue) 0%, transparent 70%);
+            opacity: 0.15;
+            top: -200px;
+            right: -200px;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--light-blue) 0%, transparent 70%);
+            opacity: 0.1;
+            bottom: -150px;
+            left: -150px;
+            animation: pulse 10s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.2); opacity: 0.25; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--light-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 72px;
+            font-weight: bold;
+            box-shadow: 0 20px 60px rgba(30, 136, 229, 0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--text-light), var(--light-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title {
+            font-size: 1.8rem;
+            color: var(--accent-blue);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--light-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--light-blue));
+            border-radius: 2px;
+        }
+
+        /* Summary */
+        .summary-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        .summary-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(30, 136, 229, 0.2);
+        }
+
+        .summary-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .summary-box li {
+            padding: 12px 0 12px 30px;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        .summary-box li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-blue), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            padding-left: 40px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -55px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            border: 4px solid var(--primary-blue);
+            box-shadow: 0 0 20px var(--accent-blue);
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-blue);
+        }
+
+        .company {
+            font-size: 1.5rem;
+            color: var(--light-blue);
+            margin-bottom: 5px;
+        }
+
+        .role {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .date {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+        }
+
+        .timeline-content li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            color: var(--text-gray);
+        }
+
+        .timeline-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 15px 40px rgba(30, 136, 229, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px var(--accent-blue));
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            color: var(--light-blue);
+            margin-bottom: 15px;
+        }
+
+        .skill-items {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--light-blue));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .app-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(30, 136, 229, 0.3);
+        }
+
+        .app-name {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .app-category {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .store-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .store-btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: rgba(30, 136, 229, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--light-blue);
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .store-btn:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Education */
+        .education-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .degree {
+            font-size: 1.5rem;
+            color: var(--light-blue);
+            margin-bottom: 10px;
+        }
+
+        .university {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .title {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline-item {
+                padding-left: 20px;
+            }
+
+            .summary-box {
+                padding: 30px;
+            }
+
+            .skills-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-img">AN</div>
+                <h1>ADITYA NAUTIYAL</h1>
+                <p class="title">Flutter Developer</p>
+                <div class="contact-info">
+                    <div class="contact-item">📍 Abu Dhabi, UAE</div>
+                    <div class="contact-item">📞 +971 501019275</div>
+                    <div class="contact-item">📞 +91 7533936659</div>
+                    <div class="contact-item">✉️ adityanautiyal9@gmail.com</div>
+                    <div class="contact-item">💼 LinkedIn</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Summary -->
+    <section id="summary">
+        <div class="container">
+            <h2 class="section-title">Professional Summary</h2>
+            <div class="summary-box fade-in">
+                <p>Highly dynamic Flutter Developer with 4.5 years of total mobile development expertise, specializing in Fintech, Healthcare, and IoT solutions. Proven ability to design and deliver high-performance, scalable, and user-centric mobile applications using advanced architectural patterns like BLoC and Clean Architecture.</p>
+                <ul>
+                    <li>Frameworks/Toolkits: Flutter, Android & iOS</li>
+                    <li>Advanced Flutter State Management: BLoC, Provider, GetX</li>
+                    <li>Deep Integration: RESTful APIs, Firebase, WebRTC, Sockets, NFC</li>
+                    <li>Performance & Quality: CI/CD pipeline implementation, rigorous SIT/UAT, and significant app performance optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <h3 class="company">Finance House, Dubai</h3>
+                        <p class="role">Software Developer (via SR Intelligent Technologies)</p>
+                        <p class="date">August 2024 – Present</p>
+                        <ul>
+                            <li>Led performance optimization initiatives, achieving measurable reductions in app load times and significant improvements in UI responsiveness for critical Fintech applications</li>
+                            <li>Architected and developed scalable Flutter applications using the BLoC pattern integrated with Clean Architecture to ensure long-term maintainability and modularity</li>
+                            <li>Managed end-to-end quality assurance by conducting thorough SIT and UAT phases to ensure stability and alignment with regulatory requirements</li>
+                            <li>Integrated essential third-party services including Firebase, Clevertap for analytics, and specialized Secure Storage solutions</li>
+                            <li>Streamlined project delivery by contributing to Agile development workflows, sprint planning, and promoting code quality through rigorous peer code reviews</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <h3 class="company">VT NETZWELT, Mohali, Punjab</h3>
+                        <p class="role">Associate Software Engineer</p>
+                        <p class="date">March 2022 – July 2024</p>
+                        <ul>
+                            <li>Engineered and maintained multiple high-quality, cross-platform applications in Flutter (Dart) for both iOS and Android platforms, enhancing feature delivery speed by over 40%</li>
+                            <li>Implemented various state management solutions (BLoC, GetX, Provider) tailored to project complexity, ensuring high component reusability and clean separation of concerns</li>
+                            <li>Designed and integrated cutting-edge AI-powered healthcare features using Azure ML & AI services, dramatically improving user interaction in the Housevizit application</li>
+                            <li>Optimized application rendering speeds and proactively managed memory footprint, resulting in a significantly reduced crash rate and smoother user experience across devices</li>
+                            <li>Managed data interactions through the integration of complex third-party APIs and Firebase for robust, real-time data handling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <div class="timeline-content">
+                        <h3 class="company">Anitej Services Pvt. Ltd, Dehradun</h3>
+                        <p class="role">Android Developer (Native)</p>
+                        <p class="date">June 2021 – March 2022</p>
+                        <ul>
+                            <li>Developed and maintained native Android applications using Java/Kotlin, focusing on high-performance UX for ride-hailing and driver companion applications</li>
+                            <li>Ensured system stability by performing rigorous debugging and testing, and successfully integrating crucial third-party APIs to optimize core app functionality</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🎯</div>
+                    <h3 class="skill-title">Primary Framework</h3>
+                    <p class="skill-items">Flutter (Dart)</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🏗️</div>
+                    <h3 class="skill-title">Architecture & State</h3>
+                    <p class="skill-items">BLoC, Clean Architecture, Provider, GetX</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">☁️</div>
+                    <h3 class="skill-title">Cloud & Services</h3>
+                    <p class="skill-items">Firebase, Azure ML & AI, Google Cloud</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">⚡</div>
+                    <h3 class="skill-title">Advanced Features</h3>
+                    <p class="skill-items">WebRTC, Sockets, NFC, Secure Storage</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">🔧</div>
+                    <h3 class="skill-title">Development Practices</h3>
+                    <p class="skill-items">CI/CD, Git, Agile/Scrum, Performance Optimization, Unit/Widget Testing</p>
+                </div>
+
+                <div class="skill-card fade-in">
+                    <div class="skill-icon">📱</div>
+                    <h3 class="skill-title">Native Background</h3>
+                    <p class="skill-items">Java, Kotlin (Android)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Application Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="app-card fade-in">
+                    <h3 class="app-name">investNation</h3>
+                    <p class="app-category">Fintech Investment Platform</p>
+                    <div class="store-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.fhc.InvestNation" class="store-btn">📱 Android</a>
+                        <a href="https://apps.apple.com/ae/app/investnation/id6465605280" class="store-btn">🍎 iOS</a>
+                    </div>
+                </div>
+
+                <div class="app-card fade-in">
+                    <h3 class="app-name">FH Personal</h3>
+                    <p class="app-category">Personal Banking</p>
+                    <div class="store-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.fh.payday" class="store-btn">📱 Android</a>
+                        <a href="https://apps.apple.com/ae/app/fh-personal/id1563416308" class="store-btn">🍎 iOS</a>
+                    </div>
+                </div>
+
+                <div class="app-card fade-in">
+                    <h3 class="app-name">FH Business</h3>
+                    <p class="app-category">Business Fintech Solution</p>
+                    <div class="store-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.fh.financehousebusiness.android.app&hl=en" class="store-btn">📱 Android</a>
+                        <a href="https://apps.apple.com/ae/app/finance-house-business/id1538849624" class="store-btn">🍎 iOS</a>
+                    </div>
+                </div>
+
+                <div class="app-card fade-in">
+                    <h3 class="app-name">Juke Audio</h3>
+                    <p class="app-category">Media Streaming</p>
+                    <div class="store-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.juke.audio.juke_audio&hl=en" class="store-btn">📱 Android</a>
+                        <a href="https://apps.apple.com/ae/app/juke-audio/id1634801077" class="store-btn">🍎 iOS</a>
+                    </div>
+                </div>
+
+                <div class="app-card fade-in">
+                    <h3 class="app-name">GTS Car Rental</h3>
+                    <p class="app-category">Native Android Rental Service</p>
+                    <div class="store-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.gtscarrental&hl=en" class="store-btn">📱 Android</a>
+                    </div>
+                </div>
+
+                <div class="app-card fade-in">
+                    <h3 class="app-name">GTS Driver App</h3>
+                    <p class="app-category">Native Android Driver Companion</p>
+                    <div class="store-links">
+                        <a href="https://play.google.com/store/apps/details?id=com.gtsdriver&hl=en" class="store-btn">📱 Android</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-box fade-in">
+                <h3 class="degree">B.Tech in Computer Science & Engineering</h3>
+                <p class="university">Uttarakhand Technical University</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aditya Nautiyal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
