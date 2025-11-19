@@ -95,16 +95,12 @@
         .profile-img {
             width: 180px;
             height: 180px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-blue), var(--light-blue));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 5px solid var(--accent-blue); 
+            display: block; 
             margin: 0 auto 30px;
-            font-size: 72px;
-            font-weight: bold;
             box-shadow: 0 20px 60px rgba(30, 136, 229, 0.4);
-            animation: float 6s ease-in-out infinite;
         }
 
         @keyframes float {
@@ -504,7 +500,7 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="profile-img">AN</div>
+                <img src="IMG-20241213-WA0021.jpg" alt="Aditya Nautiyal Profile Picture" class="profile-img">
                 <h1>ADITYA NAUTIYAL</h1>
                 <p class="title">Flutter Developer</p>
                 <div class="contact-info">
